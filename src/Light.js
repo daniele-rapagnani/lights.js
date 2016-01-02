@@ -12,4 +12,8 @@ export default class Light extends Device {
   brightnessCmd(value = 1.0) {
     this.log(`Brightness to ${value}`);
   }
+
+  temperatureCmd(value = 1.0) {
+    this.log(`Temperature to ${value}`);
+  }
 }

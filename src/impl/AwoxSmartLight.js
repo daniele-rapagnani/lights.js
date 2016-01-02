@@ -2,6 +2,7 @@ import Light from "../Light"
 
 const POWER_COMMAND = 10;
 const BRIGHTNESS_COMMAND = 12;
+const TEMPERATURE_COMMAND = 14;
 
 export default class AwoxSmartLight extends Light {
   constructor(peripheral) {
@@ -38,7 +39,14 @@ export default class AwoxSmartLight extends Light {
 
   brightnessCmd(value = 1.0) {
     super.brightnessCmd(value);
-    return this.sendCommand(BRIGHTNESS_COMMAND, [Math.floor(value * 0xFF)]);
+    let convertedVal = Math.floor((value * 9) + 2);
+    return this.sendCommand(BRIGHTNESS_COMMAND, [convertedVal]);
+  }
+
+  temperatureCmd(value = 1.0) {
+    super.temperatureCmd(value);
+    let convertedVal = Math.floor((value * 9) + 2);
+    return this.sendCommand(TEMPERATURE_COMMAND, [convertedVal]);
   }
 
   buildCommand(command, values) {
