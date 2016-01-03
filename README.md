@@ -1,5 +1,5 @@
 ## Information
-**light.js** is a Node application that allows you to control your Bluetooth lights.
+**lights.js** is a Node application that allows you to control your Bluetooth lights.
 Currently only the [AwoX Smart Light (SML-w7)](http://www.awox.com/connected-lighting/awox-smartlight/)
 is supported.
 
