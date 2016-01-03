@@ -1,9 +1,9 @@
 ## Information
 **lights.js** is a Node application that allows you to control your Bluetooth lights.
 Currently only the [AwoX Smart Light (SML-w7)](http://www.awox.com/connected-lighting/awox-smartlight/)
-is supported.
+are supported.
 
-#### Installation
+## Installation
 Clone this repository and follow the instructions for the Prerequisites
 of the [noble](https://github.com/sandeepmistry/noble) dependency according
 to your operating system.
@@ -12,8 +12,7 @@ Then simply run:
 ```sh
 npm install
 ```
-
-#### Usage
+## Usage
 Typical usage would be to scan for supported lights first:
 
 ```sh
@@ -45,7 +44,7 @@ node index.js --uuid d03972bc91e7 --uuid d03972bc94e7 -c temperature:0.5
 
 Commands can also be executed from file:
 ```sh
-node index.js --execute file_commands
+node index.js --execute commands.file
 ```
 
 The syntax of this commands files is just one command per line, like:
