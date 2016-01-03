@@ -63,6 +63,10 @@ export default class Device {
     });
   }
 
+  getSupportedCommands() {
+    return Object.keys(this).filter((item) => item.endsWith('Cmd'));
+  }
+
   toString() {
     return `${this.displayName} (${this.peripheral.uuid})`;
   }
