@@ -63,8 +63,10 @@ export default class Device {
     });
   }
 
-  getSupportedCommands() {
-    return Object.keys(this).filter((item) => item.endsWith('Cmd'));
+  getCommands() {
+    return {
+      'wait:N': 'Waits for N milliseconds before the next command'
+    };
   }
 
   toString() {
