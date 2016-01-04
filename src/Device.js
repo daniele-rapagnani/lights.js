@@ -54,6 +54,8 @@ export default class Device {
         .then(() => this.disconnect())
         .catch((err) => console.error("ERROR:", err.toString()))
       ;
+
+      return prom;
     }
   }
 

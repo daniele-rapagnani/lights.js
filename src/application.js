@@ -39,30 +39,31 @@ noble.on('discover', function(peripheral) {
     return;
   }
 
-  if (argv.list) {
-    console.log(device.toString());
-  } else if (!argv.uuid || [].concat(argv.uuid).indexOf(peripheral.uuid) >= 0) {
-    if (argv.info) {
-      let commandsInfos = device.getCommands();
-      let maxWidth = Object.keys(commandsInfos).reduce((a,b) => a.length > b.length ? a.length : b.length);
+  setTimeout(() => {
+    if (argv.list) {
       console.log(device.toString());
-      for (var command in commandsInfos) {
-        if (commandsInfos.hasOwnProperty(command)) {
-          console.log(sprintf("%-"+(maxWidth + 5)+"s %s", command, commandsInfos[command]));
+    } else if (!argv.uuid || [].concat(argv.uuid).indexOf(peripheral.uuid) >= 0) {
+      if (argv.info) {
+        let commandsInfos = device.getCommands();
+        let maxWidth = Object.keys(commandsInfos).reduce((a,b) => a.length > b.length ? a.length : b.length);
+        console.log(device.toString());
+        for (var command in commandsInfos) {
+          if (commandsInfos.hasOwnProperty(command)) {
+            console.log(sprintf("%-"+(maxWidth + 5)+"s %s", command, commandsInfos[command]));
+          }
         }
-      }
-      console.log("");
-    } else {
-      let commands;
+        console.log("");
+      } else {
+        let commands;
 
-      if (argv.command) {
-        commands = [].concat(argv.command);
-      } else if (argv.execute) {
-        commands = fs.readFileSync(argv.execute, 'utf-8').split("\n");
-      }
+        if (argv.command) {
+          commands = [].concat(argv.command);
+        } else if (argv.execute) {
+          commands = fs.readFileSync(argv.execute, 'utf-8').split("\n");
+        }
 
-      device.execute(commands);
-      device.log("Done");
+        device.execute(commands).then(() => device.log("Done"));
+      }
     }
-  }
+  }, 500);
 });
