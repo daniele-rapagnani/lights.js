@@ -10,6 +10,11 @@ export function createDevice(peripheral) {
   }
 
   let supportedImplementations = implementations.filter((item) => item.default.isSupported(peripheral));
+
+  if (supportedImplementations.length == 0) {
+    return null;
+  }
+
   let DeviceImpl = supportedImplementations[0].default;
   return new DeviceImpl(peripheral);
 }

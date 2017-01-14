@@ -36,6 +36,10 @@ noble.on('discover', function(peripheral) {
   let device = createDevice(peripheral);
 
   if (!device) {
+    if (argv.list) {
+      console.log(sprintf("Unsupported device (%s)", peripheral.uuid));
+    }
+
     return;
   }
 
